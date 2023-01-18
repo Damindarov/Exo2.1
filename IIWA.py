@@ -17,7 +17,7 @@ pr = parser()
 sock.settimeout(0.01)
 
 s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s1.bind(("192.168.1.6", 8080))
+s1.bind(("192.168.1.6", 50000))
 print('Start_listener_server')
 s1.listen(1)
 conn, addr = s1.accept()
@@ -30,9 +30,8 @@ while True:
         L_ShoulderF = math.radians(struct.unpack('h', data[2:4])[0] * 0.085)
         pr.parse_data(data)
         print(L_ShoulderF, ' ', pr.L_ShoulderF)
-        pack_to_PC = pack("ffffff", pr.L_ShoulderF, pr.L_ElbowR, pr.L_Elbow, pr.R_ShoulderF, -pr.R_ElbowR, pr.R_Elbow)
-        conn.sendall(pack_to_PC)
+        pack_to_PC = pack("ffffff", float(pr.L_ShoulderF), float(pr.L_ElbowR), float(pr.L_Elbow), float(pr.R_ShoulderF), float(-pr.R_ElbowR), float(pr.R_Elbow))
+        conn.send(pack_to_PC)
 
     except socket.timeout:
         print("Time_error")
-
