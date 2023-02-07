@@ -22,19 +22,19 @@ print("started")
 HOST1 = "172.31.1.25"  # The remote host
 HOST2 = "172.31.1.26"  # The remote host
 
-# robotModle1 = URBasic.robotModel.RobotModel()
-# robotModle2 = URBasic.robotModel.RobotModel()
-# print("Init")
+robotModle1 = URBasic.robotModel.RobotModel()
+robotModle2 = URBasic.robotModel.RobotModel()
+print("Initialization 1 UR")
 #
-# robot2 = URBasic.urScriptExt.UrScriptExt(host=HOST2, robotModel=robotModle2)
-# robot2.init_realtime_control()
-# print("Ini2")
-# robot1 = URBasic.urScriptExt.UrScriptExt(host=HOST1, robotModel=robotModle1)
-# robot1.init_realtime_control()
-# print("Init1")
+robot2 = URBasic.urScriptExt.UrScriptExt(host=HOST2, robotModel=robotModle2)
+robot2.init_realtime_control()
+print("Initialization 2 UR")
+robot1 = URBasic.urScriptExt.UrScriptExt(host=HOST1, robotModel=robotModle1)
+robot1.init_realtime_control()
+print("Initialization 1 UR")
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(1)
-s.connect(('192.168.1.6', 8080))  # Подключаемся к нашему серверу.
+s.connect(('192.168.1.6', 50000))  # Подключаемся к нашему серверу.
 while (True):
     try:
         #     s.sendall('Hello, Habr!'.encode('utf-8'))  # Отправляем фразу.
@@ -69,8 +69,8 @@ while (True):
 
         position_arr2 = [-q3, -q1-0.05, q4-0., -2.7,  0.0, 0]
         position_arr1 = [q10, -q8+0.05, q11+0., 0.0,  0.0, 0]
-        # robot1.set_realtime_pose(position_arr1)
-        # robot2.set_realtime_pose(position_arr2)
+        robot1.set_realtime_pose(position_arr1)
+        robot2.set_realtime_pose(position_arr2)
         # s.close()
     except ConnectionResetError as err:
         s.close()

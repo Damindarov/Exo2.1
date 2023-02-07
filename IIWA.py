@@ -11,13 +11,13 @@ import select
 UDP_IP = "192.169.2.1"
 UDP_PORT = 10003
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-sock.bind((UDP_IP, UDP_PORT))
+# sock.bind((UDP_IP, UDP_PORT))
 
 pr = parser()
-sock.settimeout(0.01)
+# sock.settimeout(0.01)
 
 s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s1.bind(("192.168.1.6", 50000))
+s1.bind(("192.168.1.6", 8080))
 print('Start_listener_server')
 s1.listen(1)
 conn, addr = s1.accept()
