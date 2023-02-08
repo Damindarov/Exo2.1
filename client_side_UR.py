@@ -69,8 +69,9 @@ while (True):
 
         position_arr2 = [-q3, -q1-0.05, q4-0., -2.7,  0.0, 0]
         position_arr1 = [q10, -q8+0.05, q11+0., 0.0,  0.0, 0]
-        robot1.set_realtime_pose(position_arr1)
-        robot2.set_realtime_pose(position_arr2)
+        # robot1.set_realtime_pose(position_arr1)
+        # robot2.set_realtime_pose(position_arr2)
+        robot1.set_output(0, 0)
         # s.close()
     except ConnectionResetError as err:
         s.close()
